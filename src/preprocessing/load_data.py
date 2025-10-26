@@ -1,7 +1,8 @@
 import pandas as pd
+from pathlib import Path
 
 
-def load_data():
-    train = pd.read_csv(f"train.csv")
-    print(f"Data shape: {train.shape}")
-    return train
+def load_titanic(csv_path: str | Path):
+    csv_path = Path(csv_path)
+    df = pd.read_csv(csv_path)
+    return df

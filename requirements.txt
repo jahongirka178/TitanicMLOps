@@ -1,11 +1,8 @@
-numpy
-pandas
-scipy
-matplotlib
-seaborn
-scikit-learn
 catboost
-category_encoders
-optuna
-mlflow
+pandas
+numpy
+scikit-learn
+matplotlib
 joblib
+mlflow
+
