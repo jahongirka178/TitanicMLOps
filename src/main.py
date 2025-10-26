@@ -6,12 +6,21 @@ from src.model.train import train_pipeline
 from src.utils.metrics import plot_roc
 import joblib
 
+from pathlib import Path
 
-def main(data_path: str = "data/train.csv", artifacts_dir: str = "artifacts"):
+BASE_DIR = Path(__file__).resolve().parents[1]
+DATA_PATH = BASE_DIR / "train.csv"
+
+
+def main(data_path: str = None, artifacts_dir: str = "artifacts"):
+    if data_path is None:
+        data_path = str(DATA_PATH)
     df = load_titanic(data_path)
     df_proc = basic_preprocess(df)
     df_feat = add_features(df_proc)
+
     X, y = split_X_y(df_feat, target_col="Survived")
+
     cat_feats = [c for c in X.columns if c.lower() in ["sex", "embarked", "title"] and c in X.columns]
     model, metrics = train_pipeline(
         X, y, cat_features=cat_feats, output_dir=artifacts_dir,
