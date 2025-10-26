@@ -1,0 +1,11 @@
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+scikit-learn
+catboost
+category_encoders
+optuna
+mlflow
+joblib

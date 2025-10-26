@@ -27,6 +27,7 @@ share/python-wheels/
 *.egg
 MANIFEST
 .ipynb_checkpoints
+catboost_info
 
 # PyInstaller
 #  Usually these files are written by a python script from a template
@@ -37,10 +38,6 @@ MANIFEST
 # Installer logs
 pip-log.txt
 pip-delete-this-directory.txt
-
-
-
-
 
 # Jupyter Notebook
 .ipynb_checkpoints
