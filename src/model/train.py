@@ -4,7 +4,7 @@ import joblib
 import os
 from pathlib import Path
 from typing import Union, List
-from .model_def import get_catboost_model
+from .model import get_catboost_model
 
 
 def train_pipeline(
