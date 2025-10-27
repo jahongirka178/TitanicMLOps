@@ -42,6 +42,7 @@ def main(data_path: str = None, ):
     print("Metrics:", metrics)
     # рисуем ROC если есть val_predictions
     val_path = Path(artifacts_dir) / "val_predictions.pkl"
+
     if val_path.exists():
         vp = joblib.load(val_path)
         plot_roc(vp["y_val"], vp["proba"], out_path=Path(artifacts_dir) / "roc.png")
