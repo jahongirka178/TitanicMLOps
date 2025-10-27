@@ -17,8 +17,8 @@ build/
 dist/
 *.egg-info/
 .eggs/
-artifacts
-src/catboost_info
+artifacts/
+catboost_info/
 
 
 # Logs and temp files
@@ -41,7 +41,6 @@ Thumbs.db
 
 # Data artifacts — keep your datasets tracked manually if needed
 # (don't ignore whole data/ by default)
-*.csv
 *.tsv
 *.parquet
 *.h5
@@ -54,3 +53,5 @@ Thumbs.db
 # macOS system files
 *.DS_Store
 /catboost_info/
+
+!data/
