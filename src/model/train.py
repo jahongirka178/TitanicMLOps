@@ -10,17 +10,20 @@ from .model_def import get_catboost_model
 def train_pipeline(
         X,
         y,
-        cat_features: Union[List, None] = None,
-        output_dir: Union[str, Path] = "artifacts",
+        cat_features: Union[List, None],
+        output_dir: Union[str, Path],
+        catboost_dir: Union[str, Path],
         **model_kwargs
 ):
     os.makedirs(output_dir, exist_ok=True)
+
     X_train, X_val, y_train, y_val = train_test_split(
         X, y, test_size=0.2, random_state=42, stratify=y
     )
 
-    model = get_catboost_model(**model_kwargs)
+    model = get_catboost_model(catboost_dir, **model_kwargs)
     fit_params = {}
+
     if cat_features:
         fit_params["cat_features"] = cat_features
 
