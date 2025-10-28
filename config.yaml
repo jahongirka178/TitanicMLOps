@@ -1,0 +1,15 @@
+paths:
+  base_dir: ".."
+  data_path: "data/train.csv"
+  artifact_path: "artifacts"
+  catboost_info_path: "catboost_info"
+
+model:
+  type: "catboost"
+  params:
+    iterations: 3000
+    learning_rate: 0.01
+    depth: 6
+    loss_function: "Logloss"
+    eval_metric: "AUC"
+    random_seed: 42

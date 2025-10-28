@@ -3,24 +3,18 @@ from src.preprocessing.load_data import load_titanic
 from src.preprocessing.preprocess import basic_preprocess, extract_X_y
 from src.preprocessing.features import add_features
 from src.model.train import train_pipeline
-from src.utils.metrics import plot_roc
-import joblib
+from src.utils.metrics import plot_roc, evaluate_and_plot
+from utils.paths import ConfigPaths
 
-from pathlib import Path
+paths = ConfigPaths()
 
-BASE_DIR = Path(__file__).resolve().parents[1]
-DATA_PATH = BASE_DIR / "data/train.csv"
-ARTIFACT_PATH = BASE_DIR / "artifacts"
-CATBOOST_INFO_PATH = BASE_DIR / "catboost_info"
+DATA_PATH = paths.get_path_to_data()
+ARTIFACT_PATH = paths.get_path_to_artifacts()
+CATBOOST_INFO_PATH = paths.get_path_to_catboost_info()
 
 
-def main(data_path: str = None, ):
-    if data_path is None:
-        data_path = str(DATA_PATH)
-    artifacts_dir = str(ARTIFACT_PATH)
-    catboost_dir = str(CATBOOST_INFO_PATH)
-
-    df = load_titanic(data_path)
+def main():
+    df = load_titanic(DATA_PATH)
     df_proc = basic_preprocess(df)
     df_feat = add_features(df_proc)
 
@@ -31,21 +25,15 @@ def main(data_path: str = None, ):
     model, metrics = train_pipeline(
         X, y,
         cat_features=cat_features,
-        output_dir=artifacts_dir,
-        catboost_dir=catboost_dir,
+        output_dir=ARTIFACT_PATH,
+        catboost_dir=CATBOOST_INFO_PATH,
         random_seed=42,
         iterations=1000,
         learning_rate=0.03,
         depth=6
     )
 
-    print("Metrics:", metrics)
-    # рисуем ROC если есть val_predictions
-    val_path = Path(artifacts_dir) / "val_predictions.pkl"
-
-    if val_path.exists():
-        vp = joblib.load(val_path)
-        plot_roc(vp["y_val"], vp["proba"], out_path=Path(artifacts_dir) / "roc.png")
+    evaluate_and_plot(metrics, ARTIFACT_PATH)
 
 
 if __name__ == '__main__':
