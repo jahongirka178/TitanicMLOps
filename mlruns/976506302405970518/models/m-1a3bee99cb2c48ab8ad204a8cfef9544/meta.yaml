@@ -1,0 +1,10 @@
+artifact_location: file:///Users/mac/Documents/%21AI/%21ai%20bootcamp/%21%21MLOps/lesson%201/homework1/mlruns/976506302405970518/models/m-1a3bee99cb2c48ab8ad204a8cfef9544/artifacts
+creation_timestamp: 1761675703200
+experiment_id: '976506302405970518'
+last_updated_timestamp: 1761675707545
+model_id: m-1a3bee99cb2c48ab8ad204a8cfef9544
+model_type: null
+name: model
+source_run_id: fb91662e819f484585ccc4a47c34c658
+status: 2
+status_message: null

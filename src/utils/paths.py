@@ -24,3 +24,6 @@ class ConfigPaths:
 
     def get_path_to_catboost_info_optuna(self):
         return self.base_dir / self.cfg["paths"]["catboost_info_optuna_path"]
+
+    def get_base_dir(self):
+        return self.base_dir

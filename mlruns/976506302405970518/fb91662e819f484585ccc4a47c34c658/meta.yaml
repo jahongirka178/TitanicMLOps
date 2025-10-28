@@ -1,0 +1,14 @@
+artifact_uri: file:///Users/mac/Documents/%21AI/%21ai%20bootcamp/%21%21MLOps/lesson%201/homework1/mlruns/976506302405970518/fb91662e819f484585ccc4a47c34c658/artifacts
+end_time: 1761675707560
+entry_point_name: ''
+experiment_id: '976506302405970518'
+lifecycle_stage: active
+run_id: fb91662e819f484585ccc4a47c34c658
+run_name: handsome-smelt-551
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1761675698859
+status: 3
+tags: []
+user_id: mac

@@ -15,6 +15,7 @@ DATA_PATH = paths.get_path_to_data()
 ARTIFACT_PATH = paths.get_path_to_artifacts()
 CATBOOST_INFO_PATH = paths.get_path_to_catboost_info()
 CATBOOST_INFO_OPTUNA_PATH = paths.get_path_to_catboost_info_optuna()
+BASE_DIR = paths.get_base_dir()
 
 
 def main():
@@ -29,6 +30,7 @@ def main():
         cat_features=cat_features,
         output_dir=ARTIFACT_PATH,
         catboost_dir=CATBOOST_INFO_PATH,
+        base_dir=BASE_DIR,
         random_seed=42,
         iterations=1000,
         learning_rate=0.03,
