@@ -22,6 +22,23 @@ def basic_preprocess(df: pd.DataFrame) -> pd.DataFrame:
     return X
 
 
+def add_features(X: pd.DataFrame) -> pd.DataFrame:
+    X = X.copy()
+
+    X["FamilySize"] = X["SibSp"] + X["Parch"] + 1
+    X["IsAlone"] = (X["FamilySize"] == 1).astype(int)
+    X["AgeBand"] = pd.cut(X["Age"], bins=[0, 12, 20, 40, 60, 120], labels=False)
+    X["FareBand"] = pd.qcut(X["Fare"], 4, labels=False, duplicates="drop")
+
+    return X
+
+
+def preprocess(X: pd.DataFrame) -> pd.DataFrame:
+    X = basic_preprocess(X)
+    X = add_features(X)
+    return X
+
+
 def extract_X_y(df: pd.DataFrame, target_col: str = "Survived") -> Tuple[pd.DataFrame, pd.Series]:
     y = df[target_col]
     X = df.drop(columns=[target_col])

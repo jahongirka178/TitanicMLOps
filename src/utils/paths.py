@@ -3,9 +3,9 @@ import yaml
 
 
 class ConfigPaths:
-    def __init__(self, config_path=None):
+    def __init__(self, parents_n=2, config_path=None):
         if config_path is None:
-            base = Path(__file__).resolve().parents[2]
+            base = Path(__file__).resolve().parents[parents_n]
             config_path = base / "config.yaml"
 
         with open(config_path, "r", encoding="utf-8") as f:
@@ -21,3 +21,6 @@ class ConfigPaths:
 
     def get_path_to_catboost_info(self):
         return self.base_dir / self.cfg["paths"]["catboost_info_path"]
+
+    def get_path_to_catboost_info_optuna(self):
+        return self.base_dir / self.cfg["paths"]["catboost_info_optuna_path"]

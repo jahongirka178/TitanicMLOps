@@ -3,6 +3,7 @@ paths:
   data_path: "data/train.csv"
   artifact_path: "artifacts"
   catboost_info_path: "catboost_info"
+  catboost_info_optuna_path: "catboost_info_optuna"
 
 model:
   type: "catboost"

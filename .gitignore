@@ -19,6 +19,7 @@ dist/
 .eggs/
 artifacts/
 catboost_info/
+catboost_info_optuna/
 
 
 # Logs and temp files

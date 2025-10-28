@@ -1,25 +1,27 @@
-from pathlib import Path
+from src.model.optuna_tune import run_optuna_study
 from src.preprocessing.load_data import load_titanic
-from src.preprocessing.preprocess import basic_preprocess, extract_X_y
-from src.preprocessing.features import add_features
+from src.preprocessing.preprocess import preprocess, extract_X_y
 from src.model.train import train_pipeline
-from src.utils.metrics import plot_roc, evaluate_and_plot
 from utils.paths import ConfigPaths
+from utils.vizualization import *
+import warnings
+
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
 
 paths = ConfigPaths()
 
 DATA_PATH = paths.get_path_to_data()
 ARTIFACT_PATH = paths.get_path_to_artifacts()
 CATBOOST_INFO_PATH = paths.get_path_to_catboost_info()
+CATBOOST_INFO_OPTUNA_PATH = paths.get_path_to_catboost_info_optuna()
 
 
 def main():
     df = load_titanic(DATA_PATH)
-    df_proc = basic_preprocess(df)
-    df_feat = add_features(df_proc)
+    df = preprocess(df)
 
-    X, y = extract_X_y(df_feat, target_col="Survived")
-
+    X, y = extract_X_y(df, target_col="Survived")
     cat_features = X.select_dtypes(include=["object", "category"]).columns.tolist()
 
     model, metrics = train_pipeline(
@@ -33,7 +35,10 @@ def main():
         depth=6
     )
 
-    evaluate_and_plot(metrics, ARTIFACT_PATH)
+    show_metrics(metrics)
+    plot_roc_from_artifacts(ARTIFACT_PATH)
+
+    run_optuna_study(df, CATBOOST_INFO_OPTUNA_PATH, ARTIFACT_PATH)
 
 
 if __name__ == '__main__':
