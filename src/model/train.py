@@ -16,7 +16,7 @@ def train_pipeline(
         output_dir: Union[str, Path],
         catboost_dir: Union[str, Path],
         base_dir: Union[str, Path],
-        experiment_name: str = "default",
+        experiment_name: str = "last",
         **model_kwargs
 ):
     os.makedirs(output_dir, exist_ok=True)
