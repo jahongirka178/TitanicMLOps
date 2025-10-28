@@ -6,6 +6,8 @@ from typing import Union, List
 from src.model.model_def import get_model
 from src.utils.artifacts import save_artifacts
 
+import mlflow
+import mlflow.catboost
 
 def train_pipeline(
         X,
